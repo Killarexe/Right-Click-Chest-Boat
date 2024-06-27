@@ -1,0 +1,15 @@
+{
+	"homepage": "https://github.com/Killarexe/Copper-Extension",
+	"1.20.6": {
+		"1.3.0": "Added rusted coppers, crafts and beehive feature..."
+	},
+	"1.21": {
+		"1.3.1": "Update to 1.21 and add crafts."
+	},
+	"promos": {
+		"1.20.6-lastest": "1.3.0",
+		"1.20.6-recommended": "1.3.0",
+		"1.21-lastest": "1.3.1",
+		"1.21-recommended": "1.3.1"
+	}
+}

@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "github.killarexe.right_click_chest_boat.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [],
+  "client": [
+    "BoatInteractMixin"
+  ],
+  "server": [
+    "BoatInteractMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

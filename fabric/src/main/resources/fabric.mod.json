@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${mod_version}",
+  "name": "${mod_name}",
+  "description": "${mod_description}",
+  "authors": [
+    "Killar"
+  ],
+  "contact": {
+    "homepage": "${mod_url}",
+    "sources": "https://github.com/Killarexe/Right-Click-Chest-Boat"
+  },
+  "license": "${mod_license}",
+  "icon": "${mod_icon}",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "github.killarexe.right_click_chest_boat.fabric.RCCBFabric"
+    ]
+  },
+  "depends": {
+    "fabric": "*",
+    "minecraft": ">=${minecraft_version}"
+  },
+  "mixins": [
+    "right_click_chest_boat.mixins.json"
+  ]
+}
