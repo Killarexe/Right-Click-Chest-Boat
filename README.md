@@ -14,4 +14,4 @@ A Really simple mod witch enable the player to **Shift Right-Click** on a boat w
 
 [![Curseforge](http://cf.way2muchnoise.eu/versions/1056345.svg)](https://www.curseforge.com/minecraft/mc-mods/right-click-chest-boat)
 [![Curseforge](http://cf.way2muchnoise.eu/full_1056345_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/right-click-chest-boat)
-![Modrinth Downloads](https://img.shields.io/modrinth/dt/eV0rTOBa?logo=modrinth)
+[![Modrinth Downloads](https://img.shields.io/modrinth/dt/eV0rTOBa?logo=modrinth)](https://modrinth.com/mod/right-click-chest-boat)
