@@ -1,10 +1,3 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-# This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
-
 name: Java CI with Gradle
 
 on:
@@ -15,6 +8,10 @@ on:
 
 permissions:
   contents: read
+
+env:
+  mod_name: right-click-chest-boat
+  mod_version: 1.0.2
 
 jobs:
   build:
@@ -35,36 +32,36 @@ jobs:
       - name: Upload Fabric Mod
         uses: actions/upload-artifact@v4
         with:
-          name: copper-extension-fabric-1.3.1
-          path: ./fabric/build/libs/copper-extension-fabric-1.3.1.jar
+          name: ${{ env.mod_name }}-fabric-${{ env.mod_version }}
+          path: ./fabric/build/libs/${{ env.mod_name }}-fabric-${{ env.mod_version }}.jar
           retention-days: 7
       - name: Upload Fabric Mod Sources
         uses: actions/upload-artifact@v4
         with:
-          name: copper-extension-fabric-1.3.1-sources
-          path: ./fabric/build/libs/copper-extension-fabric-1.3.1-sources.jar
+          name: ${{ env.mod_name }}-fabric-${{ env.mod_version }}-sources
+          path: ./fabric/build/libs/${{ env.mod_name }}-fabric-${{ env.mod_version }}-sources.jar
           retention-days: 7
       - name: Upload Fabric Mod Dev Shadow
         uses: actions/upload-artifact@v4
         with:
-          name: copper-extension-fabric-1.3.1-dev-shadow
-          path: ./fabric/build/libs/copper-extension-fabric-1.3.1-dev-shadow.jar
+          name: ${{ env.mod_name }}-fabric-${{ env.mod_version }}-dev-shadow
+          path: ./fabric/build/libs/${{ env.mod_name }}-fabric-${{ env.mod_version }}-dev-shadow.jar
           retention-days: 7
       - name: Upload NeoForge Mod
         uses: actions/upload-artifact@v4
         with:
-          name: copper-extension-neoforge-1.3.1
-          path: ./neoforge/build/libs/copper-extension-neoforge-1.3.1.jar
+          name: ${{ env.mod_name }}-neoforge-${{ env.mod_version }}
+          path: ./neoforge/build/libs/${{ env.mod_name }}-neoforge-${{ env.mod_version }}.jar
           retention-days: 7
       - name: Upload NeoForge Mod Sources
         uses: actions/upload-artifact@v4
         with:
-          name: copper-extension-neoforge-1.3.1-sources
-          path: ./neoforge/build/libs/copper-extension-neoforge-1.3.1-sources.jar
+          name: ${{ env.mod_name }}-neoforge-${{ env.mod_version }}-sources
+          path: ./neoforge/build/libs/${{ env.mod_name }}-neoforge-${{ env.mod_version }}-sources.jar
           retention-days: 7
       - name: Upload NeoForge Mod Dev Shadow
         uses: actions/upload-artifact@v4
         with:
-          name: copper-extension-neoforge-1.3.1-dev-shadow
-          path: ./neoforge/build/libs/copper-extension-neoforge-1.3.1-dev-shadow.jar
+          name: ${{ env.mod_name }}-neoforge-${{ env.mod_version }}-dev-shadow
+          path: ./neoforge/build/libs/${{ env.mod_name }}-neoforge-${{ env.mod_version }}-dev-shadow.jar
           retention-days: 7

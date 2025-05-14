@@ -16,6 +16,7 @@ import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -28,6 +29,7 @@ import java.util.stream.Collectors;
 @Mixin(AbstractBoat.class)
 public abstract class BoatInteractMixin extends VehicleEntity implements Leashable {
 
+    @Unique
     private static final Map<Item, EntityType<? extends AbstractChestBoat>> ITEM_ENTITY_MAP = Map.of(
             Items.ACACIA_BOAT, EntityType.ACACIA_CHEST_BOAT,
             Items.BIRCH_BOAT, EntityType.BIRCH_CHEST_BOAT,
