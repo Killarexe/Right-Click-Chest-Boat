@@ -37,35 +37,32 @@ public abstract class BoatInteractMixin extends VehicleEntity implements Leashab
   @Inject(method = "interact", at = @At("HEAD"), cancellable = true)
   public void interact(Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> callbackInfo) {
     Optional<EntityType<? extends @NotNull AbstractChestBoat>> type = Optional.ofNullable(RCCBMap.ITEM_ENTITY_MAP.get(getType()));
-    if (type.isEmpty()) {
-      callbackInfo.setReturnValue(InteractionResult.PASS);
-      return;
-    }
+    if (type.isPresent()) {
+      InteractionResult result = super.interact(player, hand);
+      if (!getPassengers().isEmpty()) {
+        player.displayClientMessage(Component.translatable("message.right_click_chest_boat.passengers"), true);
+        callbackInfo.setReturnValue(result);
+        return;
+      }
+      if (result != InteractionResult.PASS) {
+        callbackInfo.setReturnValue(result);
+        return;
+      }
 
-    InteractionResult result = super.interact(player, hand);
-    if (!getPassengers().isEmpty()) {
-      player.displayClientMessage(Component.translatable("message.right_click_chest_boat.passengers"), true);
-      callbackInfo.setReturnValue(result);
-      return;
-    }
-    if (result != InteractionResult.PASS) {
-      callbackInfo.setReturnValue(result);
-      return;
-    }
-
-    Level level = player.level();
-    if (level instanceof ServerLevel serverLevel) {
-      ItemStack stack = player.getItemInHand(hand);
-      if ((!stack.getTags().map(itemTagKey -> itemTagKey.location().getPath().contains("chest")).collect(Collectors.toSet()).isEmpty() || stack.is(Items.CHEST)) && player.isShiftKeyDown()) {
-        stack.shrink(1);
-        AbstractChestBoat newBoat = type.get().create(serverLevel, EntitySpawnReason.SPAWN_ITEM_USE);
-        EntityType.createDefaultStackConfig(serverLevel, getDropItem().getDefaultInstance(), player).accept(newBoat);
-        newBoat.setXRot(getXRot());
-        newBoat.setYRot(getYRot());
-        newBoat.setPos(position());
-        level.addFreshEntity(newBoat);
-        kill(serverLevel);
-        callbackInfo.setReturnValue(InteractionResult.SUCCESS);
+      Level level = player.level();
+      if (level instanceof ServerLevel serverLevel) {
+        ItemStack stack = player.getItemInHand(hand);
+        if ((!stack.getTags().map(itemTagKey -> itemTagKey.location().getPath().contains("chest")).collect(Collectors.toSet()).isEmpty() || stack.is(Items.CHEST)) && player.isShiftKeyDown()) {
+          stack.shrink(1);
+          AbstractChestBoat newBoat = type.get().create(serverLevel, EntitySpawnReason.SPAWN_ITEM_USE);
+          EntityType.createDefaultStackConfig(serverLevel, getDropItem().getDefaultInstance(), player).accept(newBoat);
+          newBoat.setXRot(getXRot());
+          newBoat.setYRot(getYRot());
+          newBoat.setPos(position());
+          level.addFreshEntity(newBoat);
+          kill(serverLevel);
+          callbackInfo.setReturnValue(InteractionResult.SUCCESS);
+        }
       }
     }
   }
