@@ -64,7 +64,7 @@ public abstract class BoatInteractMixin extends VehicleEntity implements Leashab
         Level level = player.level();
         if (level instanceof ServerLevel serverLevel) {
             ItemStack stack = player.getItemInHand(hand);
-            if ((!stack.getTags().map(itemTagKey -> itemTagKey.location().getPath().contains("chest")).collect(Collectors.toSet()).isEmpty() || stack.is(Items.CHEST)) && player.isShiftKeyDown()) {
+            if ((stack.getTags().anyMatch(tag -> tag.location().getPath().toLowerCase().contains("chest"))|| stack.is(Items.CHEST)) && player.isShiftKeyDown()) {
                 stack.shrink(1);
                 Optional<EntityType<? extends AbstractChestBoat>> type = Optional.ofNullable(ITEM_ENTITY_MAP.get(dropItem.get()));
                 if (type.isEmpty()) {
