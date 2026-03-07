@@ -17,16 +17,11 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.Map;
 import java.util.Optional;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 @Mixin(AbstractBoat.class)
 public abstract class BoatInteractMixin extends VehicleEntity implements Leashable {
@@ -52,7 +47,7 @@ public abstract class BoatInteractMixin extends VehicleEntity implements Leashab
       Level level = player.level();
       if (level instanceof ServerLevel serverLevel) {
         ItemStack stack = player.getItemInHand(hand);
-        if ((stack.getTags().anyMatch(tag -> tag.location().getPath().toLowerCase().contains("chest")) || stack.is(Items.CHEST)) && player.isShiftKeyDown()) {
+        if (stack.is(Items.CHEST) && player.isShiftKeyDown()) {
           stack.shrink(1);
           AbstractChestBoat newBoat = type.get().create(serverLevel, EntitySpawnReason.SPAWN_ITEM_USE);
           EntityType.createDefaultStackConfig(serverLevel, getDropItem().getDefaultInstance(), player).accept(newBoat);

@@ -10,10 +10,12 @@
 		"1.0.2": "Update to Minecraft 1.21.5."
 	},
     "1.21.9": {
-        "1.0.3": "Update to Minecraft 1.21.9."
+        "1.0.3": "Update to Minecraft 1.21.9.",
+        "1.0.3.1": "Patch bug #4."
     },
     "1.21.11": {
-        "1.0.4": "Update to Minecraft 1.21.11."
+        "1.0.4": "Update to Minecraft 1.21.11.",
+        "1.0.4.1": "Patch bug #4."
     },
 	"promos": {
 		"1.21-lastest": "1.0.0",
@@ -38,7 +40,7 @@
         "1.21.9-recommended": "1.0.3",
         "1.21.10-lastest": "1.0.3",
         "1.21.10-recommended": "1.0.3",
-        "1.21.11-lastest": "1.0.4",
-        "1.21.11-recommended": "1.0.4"
+        "1.21.11-lastest": "1.0.4.1",
+        "1.21.11-recommended": "1.0.4.1"
 	}
 }
