@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [ "master" ]
 
-permissions:
-  contents: read
-
 env:
   mod_name: right-click-chest-boat
   mod_version: 1.0.4.1
