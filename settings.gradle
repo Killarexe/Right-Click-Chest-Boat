@@ -1,14 +1,27 @@
 pluginManagement {
     repositories {
-        maven { url "https://maven.fabricmc.net/" }
-        maven { url "https://maven.architectury.dev/" }
-        maven { url "https://maven.neoforged.net/" }
         gradlePluginPortal()
+        mavenCentral()
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = 'Fabric'
+                    url = uri('https://maven.fabricmc.net')
+                }
+            }
+            filter {
+                includeGroupAndSubgroups('net.fabricmc')
+            }
+        }
     }
 }
 
-include("common")
-include("fabric")
-include("neoforge")
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
+}
 
-rootProject.name = "right-click-chest-boat"
+// This should match the folder name of the project, or else IDEA may complain (see https://youtrack.jetbrains.com/issue/IDEA-317606)
+rootProject.name = 'Right Click Chest Boat'
+include('common')
+include('fabric')
+include('neoforge')

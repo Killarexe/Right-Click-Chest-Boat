@@ -15,6 +15,7 @@ import net.minecraft.world.entity.vehicle.boat.AbstractChestBoat;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -30,12 +31,12 @@ public abstract class BoatInteractMixin extends VehicleEntity implements Leashab
   }
 
   @Inject(method = "interact", at = @At("HEAD"), cancellable = true)
-  public void interact(Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> callbackInfo) {
+  public void interact(Player player, InteractionHand hand, Vec3 location, CallbackInfoReturnable<InteractionResult> callbackInfo) {
     Optional<EntityType<? extends @NotNull AbstractChestBoat>> type = Optional.ofNullable(RCCBMap.ITEM_ENTITY_MAP.get(getType()));
     if (type.isPresent()) {
-      InteractionResult result = super.interact(player, hand);
+      InteractionResult result = super.interact(player, hand, location);
       if (!getPassengers().isEmpty()) {
-        player.displayClientMessage(Component.translatable("message.right_click_chest_boat.passengers"), true);
+        player.sendOverlayMessage(Component.translatable("message.right_click_chest_boat.passengers"));
         callbackInfo.setReturnValue(result);
         return;
       }
