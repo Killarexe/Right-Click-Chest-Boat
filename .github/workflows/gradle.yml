@@ -9,6 +9,7 @@ on:
 env:
   mod_name: right-click-chest-boat
   mod_version: 1.0.5
+  minecraft_version: 26.1
 
 jobs:
   build:
@@ -30,35 +31,23 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.mod_name }}-fabric-${{ env.mod_version }}
-          path: ./fabric/build/libs/${{ env.mod_name }}-fabric-${{ env.mod_version }}.jar
+          path: ./fabric/build/libs/${{ env.mod_name }}-fabric-{{ env.minecraft_version }}-${{ env.mod_version }}.jar
           retention-days: 7
       - name: Upload Fabric Mod Sources
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.mod_name }}-fabric-${{ env.mod_version }}-sources
-          path: ./fabric/build/libs/${{ env.mod_name }}-fabric-${{ env.mod_version }}-sources.jar
-          retention-days: 7
-      - name: Upload Fabric Mod Dev Shadow
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.mod_name }}-fabric-${{ env.mod_version }}-dev-shadow
-          path: ./fabric/build/libs/${{ env.mod_name }}-fabric-${{ env.mod_version }}-dev-shadow.jar
+          path: ./fabric/build/libs/${{ env.mod_name }}-fabric-{{ env.minecraft_version }}-${{ env.mod_version }}-sources.jar
           retention-days: 7
       - name: Upload NeoForge Mod
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.mod_name }}-neoforge-${{ env.mod_version }}
-          path: ./neoforge/build/libs/${{ env.mod_name }}-neoforge-${{ env.mod_version }}.jar
+          path: ./neoforge/build/libs/${{ env.mod_name }}-neoforge-{{ env.minecraft_version }}-${{ env.mod_version }}.jar
           retention-days: 7
       - name: Upload NeoForge Mod Sources
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.mod_name }}-neoforge-${{ env.mod_version }}-sources
-          path: ./neoforge/build/libs/${{ env.mod_name }}-neoforge-${{ env.mod_version }}-sources.jar
-          retention-days: 7
-      - name: Upload NeoForge Mod Dev Shadow
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.mod_name }}-neoforge-${{ env.mod_version }}-dev-shadow
-          path: ./neoforge/build/libs/${{ env.mod_name }}-neoforge-${{ env.mod_version }}-dev-shadow.jar
+          path: ./neoforge/build/libs/${{ env.mod_name }}-neoforge-{{ env.minecraft_version }}-${{ env.mod_version }}-sources.jar
           retention-days: 7
